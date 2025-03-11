@@ -1,0 +1,909 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les Régions de France et Leurs Cultures</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+        
+        header {
+            background-color: #002654;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .flag-colors {
+            display: flex;
+            height: 10px;
+        }
+        
+        .blue {
+            background-color: #002654;
+            flex: 1;
+        }
+        
+        .white {
+            background-color: white;
+            flex: 1;
+        }
+        
+        .red {
+            background-color: #ED2939;
+            flex: 1;
+        }
+        
+        /* Main Navigation */
+        .main-nav {
+            background-color: #333;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .main-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .main-nav li {
+            margin: 0 15px;
+        }
+        
+        .main-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .main-nav a:hover {
+            color: #ED2939;
+        }
+        
+        /* Section Navigation */
+        .section-nav {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+            position: sticky;
+            top: 43px;
+            z-index: 90;
+        }
+        
+        .section-nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .section-nav li {
+            margin: 5px 10px;
+        }
+        
+        .section-nav a {
+            color: #333;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            transition: background-color 0.3s;
+        }
+        
+        .section-nav a:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .section-nav a.active {
+            background-color: #ED2939;
+            color: white;
+        }
+
+        /* Presentation Info */
+        .presentation-info {
+            background-color: #f8f9fa;
+            padding: 15px 20px;
+            margin: 0;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .presentation-info h3 {
+            color: #002654;
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .presentation-info p {
+            margin: 5px 0;
+            font-size: 0.95rem;
+        }
+        
+        .members-list {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 10px;
+        }
+        
+        .member {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .member-name {
+            font-weight: bold;
+        }
+        
+        .member-id {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Region styles */
+        .region {
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .region-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .region-image {
+            width: 300px;
+            height: 200px;
+            background-color: #ddd;
+            margin-right: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .region-title {
+            flex-grow: 1;
+        }
+        
+        .region-title h2 {
+            color: #002654;
+            margin-bottom: 5px;
+        }
+        
+        .region-title p {
+            font-style: italic;
+            color: #666;
+        }
+        
+        .region-sections {
+            margin-top: 30px;
+        }
+        
+        .region-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .region-section h3 {
+            color: #ED2939;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        
+        /* Features/highlights */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .feature-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+
+        /* ------------------- */
+
+        /* Existing styles remain unchanged */
+        /* New Media Containers */
+        .media-container {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .media-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        /* Image Styles */
+        .region-image-large {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 10px;
+        }
+
+        .region-image-medium {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .region-image-small {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .region-image-gallery {
+            width: calc(33.333% - 20px);
+            min-width: 250px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .region-image-gallery:hover {
+            transform: scale(1.03);
+        }
+
+        /* Caption Styles */
+        .media-caption {
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+            max-width: 90%;
+        }
+
+        /* Video Container */
+        .video-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe, 
+        .video-container video {
+            width: 100%;
+            aspect-ratio: 16/9;
+            border: none;
+        }
+
+        /* Panorama Image */
+        .panorama-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .panorama-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Media Grid for Gallery Sections */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .media-grid-item {
+            position: relative;
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .media-grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .media-grid-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .media-grid-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px;
+            font-size: 0.85rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .media-grid-item:hover .media-grid-caption {
+            transform: translateY(0);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .region-image-gallery {
+                width: calc(50% - 20px);
+            }
+            
+            .media-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .region-image-gallery {
+                width: 100%;
+            }
+            
+            .media-row {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Interactive 360° viewer container */
+        .viewer-360 {
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .viewer-360 iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 8px;
+        }
+
+        /* Before and after image comparison container */
+        .before-after-container {
+            position: relative;
+            max-width: 800px;
+            margin: 30px auto;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* ---------------- */
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            clear: both;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Les Régions de France et Leurs Cultures</h1>
+        <p>Découvrez la diversité culturelle des régions françaises</p>
+    </header>
+    
+    <div class="flag-colors">
+        <div class="blue"></div>
+        <div class="white"></div>
+        <div class="red"></div>
+    </div>
+    
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#bretagne">Bretagne</a></li>
+            <li><a href="#provence">Provence-Alpes-Côte d'Azur</a></li>
+            <li><a href="#alsace">Alsace (Grand Est)</a></li>
+            <!-- <li><a href="#aquitaine">Nouvelle-Aquitaine</a></li> -->
+            <!-- <li><a href="#occitanie">Occitanie</a></li> -->
+        </ul>
+    </nav>
+    
+    <!-- Section Navigation -->
+    <nav class="section-nav">
+        <ul>
+            <li><a href="#geography">Géographie et Histoire</a></li>
+            <li><a href="#language">Langue et Traditions</a></li>
+            <!-- <li><a href="#economy">Économie et Industries</a></li> -->
+            <li><a href="#cuisine">Cuisine et Festivals</a></li>
+            <!-- <li><a href="#modern">Influence Moderne et Comparaison</a></li> -->
+        </ul>
+    </nav>
+    
+    <!-- Added Presentation Information -->
+    <div class="presentation-info">
+        <h3>French regions and regional culture</h3>
+        <div class="members-list">
+            <div class="member">
+                <span class="member-name">Kanakesh</span>
+                <span class="member-id">RA2411026010429</span>
+            </div>
+            <div class="member">
+                <span class="member-name">Monish</span>
+                <span class="member-id">RA2411026010423</span>
+            </div>
+            <div class="member">
+                <span class="member-name">Prasad</span>
+                <span class="member-id">RA2411026010427</span>
+            </div>
+            <div class="member">
+                <span class="member-name">Yaswanth</span>
+                <span class="member-id">RA2411026010371</span>
+            </div>
+            <div class="member">
+                <span class="member-name">Somesh</span>
+                <span class="member-id">RA2411026010416</span>
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <section id="introduction" class="intro">
+            <h2>La France et ses Régions</h2>
+            <p>La France est un pays avec une riche diversité culturelle qui varie considérablement d'une région à l'autre. Depuis la réforme territoriale de 2016, la France métropolitaine compte 13 régions, chacune avec sa propre histoire, ses traditions, sa cuisine et parfois même sa langue régionale.</p>
+            <p>Explorez cinq régions emblématiques pour découvrir leurs particularités géographiques, linguistiques, économiques, culinaires et leur influence moderne.</p>
+        </section>
+        
+        <!-- BRETAGNE -->
+        <section id="bretagne" class="region">
+            <div class="region-header">
+                <div ><img class="region-image" src="https://media.istockphoto.com/id/619078616/photo/city-square-of-rochefort-en-terre-brittany.jpg?s=612x612&w=0&k=20&c=CpkpfCidJdvLTn5l-enTgfHFuvxvlpphf0wVsUKyToU=" alt=""></div>
+                <div class="region-title">
+                    <h2>Bretagne</h2>
+                    <p>La péninsule aux traditions celtiques</p>
+                </div>
+            </div>
+            
+            <div class="region-sections">
+                <div id="geography" class="region-section">
+                    <h3>Géographie et Histoire</h3>
+                    <p>La Bretagne est une péninsule située à l'extrême ouest de la France, baignée par la Manche au nord et l'océan Atlantique au sud. Sa côte découpée s'étend sur plus de 2 700 km, avec des falaises escarpées, des plages de sable fin et des îles pittoresques.</p>
+                    <p>Historiquement, la Bretagne était un duché indépendant jusqu'à son union avec la France en 1532. Auparavant, la région était fortement influencée par les cultures celtiques, notamment les migrants venus de Grande-Bretagne entre le Ve et le VIIe siècle, d'où son nom "Bretagne" (Petite Bretagne).</p>
+                    <p>Le paysage breton est marqué par des landes, des forêts anciennes comme Brocéliande (liée aux légendes arthuriennes), et des formations mégalithiques comme celles de Carnac, témoins d'une occupation humaine remontant au Néolithique.</p>
+                </div>
+                
+                <!-- Example 4: Gallery section with hover effects -->
+                <h4>Galerie Photo : La Bretagne en Images</h4>
+                <div class="media-grid">
+                    <div class="media-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLG02eEhehBtpo0Flc_FSGdMOeKikvrYiS5g&s" alt="Saint-Malo">
+                        <div class="media-grid-caption">Les remparts de Saint-Malo</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://www.brest.port.bzh/uploads/2024/06/05_02_01_port_tradi_1-1024x576.jpg" alt="Port de Brest">
+                        <div class="media-grid-caption">Le port de Brest</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://www.menhirs-carnac.fr/var/cmn_inter/storage/images/_aliases/news_card_webp/0/8/7/0/120490780-1-fre-FR/c6fbeb1a5bbe-mathieu-le-palabe-Contraste-carre-764x764.webp.webp" alt="Menhirs de Carnac">
+                        <div class="media-grid-caption">Les alignements de Carnac</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://live.staticflickr.com/4683/39322416402_d9c3822792_b.jpg" alt="Quimper">
+                        <div class="media-grid-caption">La vieille ville de Quimper</div>
+                    </div>
+                </div>
+
+                <div id="language" class="region-section">
+                    <h3>Langue et Traditions</h3>
+                    <p>Le breton (brezhoneg) est une langue celtique encore parlée par environ 200 000 personnes, principalement à l'ouest de la région. À l'est, on trouve également le gallo, une langue d'oïl. Les panneaux routiers sont souvent bilingues français-breton.</p>
+                    <p>Les traditions bretonnes incluent :</p>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎵</div>
+                            <h4>Musique et Danse</h4>
+                            <p>Fest-noz (fêtes nocturnes), danses traditionnelles comme l'an-dro et la gavotte, utilisation d'instruments comme la bombarde et le biniou (cornemuse bretonne).</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⛪</div>
+                            <h4>Pardons</h4>
+                            <p>Processions religieuses où les habitants portent les costumes traditionnels uniques à chaque commune.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">👗</div>
+                            <h4>Costumes</h4>
+                            <p>Coiffes féminines distinctives selon les régions (bigouden, carantec, etc.) et habits traditionnels.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- <div id="economy" class="region-section">
+                    <h3>Économie et Industries</h3>
+                    <p>L'économie bretonne repose sur plusieurs piliers :</p>
+                    <ul>
+                        <li><strong>Agriculture et agroalimentaire :</strong> Premier producteur français de lait, de volailles, d'œufs et de légumes. Des entreprises comme Bonduelle et Daunat y sont implantées.</li>
+                        <li><strong>Pêche :</strong> Première région de pêche en France avec des ports importants comme Lorient, Concarneau et Saint-Malo.</li>
+                        <li><strong>Tourisme :</strong> Attire des millions de visiteurs chaque année, particulièrement en été.</li>
+                        <li><strong>Technologies :</strong> Développement d'un pôle numérique à Rennes et Lannion, avec des recherches en télécommunications.</li>
+                        <li><strong>Construction navale :</strong> Chantiers navals de Saint-Nazaire (à la frontière avec les Pays de la Loire).</li>
+                    </ul>
+                    <p>La Bretagne connaît un développement économique solide tout en faisant face aux défis environnementaux liés à l'agriculture intensive.</p>
+                </div> -->
+                
+                <!-- Example 5: Panorama image -->
+                <div class="panorama-container">
+                    <img src="https://te-koop-frankrijk.be/static/w-1200.h-300/en/file/75/regions/Te-koop-Bretagne.jpg" alt="Bretagne" class="panorama-image">
+                </div>
+
+                <div id="cuisine" class="region-section">
+                    <h3>Cuisine et Festivals</h3>
+                    <p>La cuisine bretonne est renommée pour ses spécialités :</p>
+                    <ul>
+                        <li><strong>Crêpes et galettes :</strong> Galettes de sarrasin (salées) et crêpes au froment (sucrées)</li>
+                        <li><strong>Kouign-amann :</strong> Pâtisserie feuilletée caramélisée originaire de Douarnenez</li>
+                        <li><strong>Fruits de mer :</strong> Huîtres de Cancale, coquilles Saint-Jacques</li>
+                        <li><strong>Boissons :</strong> Cidre, chouchen (hydromel breton), whisky breton</li>
+                        <li><strong>Far breton :</strong> Flan aux pruneaux</li>
+                    </ul>
+                    
+                    <p><strong>Festivals majeurs :</strong></p>
+                    <ul>
+                        <li><strong>Festival Interceltique de Lorient :</strong> Plus grand rassemblement de cultures celtiques au monde (août)</li>
+                        <li><strong>Vieilles Charrues :</strong> L'un des plus grands festivals de musique de France à Carhaix (juillet)</li>
+                        <li><strong>Festival de Cornouaille :</strong> Célébration de la culture bretonne à Quimper (juillet)</li>
+                        <li><strong>Route du Rhum :</strong> Célèbre course transatlantique à la voile partant de Saint-Malo (tous les 4 ans)</li>
+                    </ul>
+                </div>
+                
+                <!-- <div id="modern" class="region-section">
+                    <h3>Influence Moderne et Comparaison</h3>
+                    <p>La Bretagne connaît une renaissance culturelle depuis les années 1970 avec un regain d'intérêt pour la langue bretonne et les traditions. Ce mouvement a engendré :</p>
+                    <ul>
+                        <li>Des écoles Diwan en langue bretonne</li>
+                        <li>Une scène musicale florissante mêlant traditions et modernité (Alan Stivell, Dan Ar Braz, Tri Yann)</li>
+                        <li>Un fort sentiment d'identité régionale</li>
+                    </ul>
+                    
+                    <p><strong>Comparaison avec d'autres régions :</strong></p>
+                    <p>Contrairement à l'Alsace influencée par la culture germanique ou à la Provence méditerranéenne, la Bretagne présente une identité celtique unique en France métropolitaine, la rapprochant davantage de l'Irlande, du Pays de Galles et de l'Écosse que des autres régions françaises.</p>
+                    
+                    <p>La Bretagne a su préserver son identité culturelle tout en s'intégrant dans la modernité française, faisant d'elle l'une des régions les plus distinctives de France.</p>
+                </div> -->
+            </div>
+        </section>
+        
+        <!-- PROVENCE -->
+        <section id="provence" class="region">
+            <div class="region-header">
+                <div ><img class="region-image" src="https://www.oliverstravels.com/blog/wp-content/uploads/2022/02/C%C3%B4te-dAzur.png" alt="Image de la Provence-Alpes-Côte d'Azur"></div>
+                <div class="region-title">
+                    <h2>Provence-Alpes-Côte d'Azur</h2>
+                    <p>La région du soleil, de la lavande et de la Méditerranée</p>
+                </div>
+            </div>
+            
+            <div class="region-sections">
+                <div id="geography" class="region-section">
+                    <h3>Géographie et Histoire</h3>
+                    <p>La région Provence-Alpes-Côte d'Azur (PACA) est située dans le sud-est de la France, bordée par la mer Méditerranée au sud et l'Italie à l'est. Son territoire comprend :</p>
+                    <ul>
+                        <li>La Provence historique avec ses collines et ses champs de lavande</li>
+                        <li>Les Alpes du Sud culminant à plus de 4 000 mètres</li>
+                        <li>La Côte d'Azur (ou Riviera française) avec ses stations balnéaires prestigieuses</li>
+                    </ul>
+                    
+                    <p>Historiquement, la Provence fut d'abord une colonie grecque (Marseille fondée vers 600 av. J.-C.), puis romaine. La région a longtemps été indépendante avant d'être rattachée à la France en 1481. Le Comté de Nice n'a rejoint la France qu'en 1860.</p>
+                    
+                    <p>La région conserve de nombreux vestiges romains remarquables (arènes d'Arles, théâtre d'Orange, Pont du Gard) et des villages perchés médiévaux témoignant de son riche passé.</p>
+                </div>
+
+                <!-- Example 4: Gallery section with hover effects -->
+                <h4>Galerie Photo : Provence-Alpes-Côte d'Azur en Images</h4>
+                <div class="media-grid">
+                    <div class="media-grid-item">
+                        <img src="https://www.shutterstock.com/image-photo/lavender-field-summer-sunset-landscape-600nw-509596870.jpg" alt="Saint-Malo">
+                        <div class="media-grid-caption">Alpes-de-Haute-Provence</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="data:image/jpeg;base64,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" alt="Port de Brest">
+                        <div class="media-grid-caption">Hautes-Alpes</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEBUSEhIVFRUWFxcVFxcVFxUVFRUXFxUXGBUXFRUYHSggGBolHRcVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tNy0tLS8wLS0tLS0tLS0tLS8tLS0tLS0tLS0tLSstLS0tLS0tLS0tLS0tLS0tLf/AABEIALEBHAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAEAAECAwUGBwj/xABFEAABAwIDBgMFBQUFBwUAAAABAAIRAyEEEjEFEyJBUWFxgZEGFDKhsUJSwdHwI2JykuEzQ4KywhUWU4Oi0vEHk6Ozw//EABoBAAMBAQEBAAAAAAAAAAAAAAABAgMEBQb/xAAwEQACAQMDAgMGBgMAAAAAAAAAAQIDERMSITEEFEFRkTJSYaGx8CIzQnGB4RUjwf/aAAwDAQACEQMRAD8A8+ypwxHDDKQwy+y1o8G0gDInDFoDDKQwyeRC0yM8U0+RaIwqmML2TyInTIzN2n3a1BhFIYRGVC0SMoU1LdrUGEUhhE8qDRIyhTTimtcYTspe6dkZkLHIyBTT7pbAwikMIjMgxSMbdJxSK2hg+yf3TsjMhYmYoonopCgei2hhOykMJ2SzoeFmIMOeil7uVtjB9lIYNGcMBhjDlSGGK2xhFL3RHcBgMMYUqQwi2/dE4wqXcDwGKMIpDCLaGET+6JdwPt0Ywwif3RbHuicYTsp7grAjH91TjDLY917Je6KX1BWBGR7spe7LXGEUhhFL6grCY3uyf3ZbPu3ZI0QpdcpUjH93S93Wtuwlu1OceIxBhlIYZaDaSsFBcuY3xmcMMpDDLSbQUxQRnDGZowqkMMtIUlMUUZwxGaMMpDCrRNE8gD5x+CcUnfdHk7+iWcMRnjCqxuG7LRZR7K1tFLuAxGYMN2Uhhey1BRUxRS7gMRlDDKYwq1RRUhRR3AYjKGFUhhVqiiFIUgl3A8Jk+7KQwy1d0pCil3A8JkjDKYwy1dyluUu4DEZYwqf3Vae57JjSPRLuR4jOGGUvdUTnd/wn/wDx/wDeonEQYNOp/LI9QSEZ2PEUjDJ/dwjAyRz8xCg6mVHcFYQbchNugmx1Z9MSKZeP3ZnzEFcRt3Gmq67SyAeF0G+mtjGq0pylMmUFE7V2QauHqFTVr02mHPaD0JAPzXmJoImhgs322j116Ldw+JC/Y9IMaql+Ib1XKbO2QW3NUtj7oPrZbOGpMGjatTuS0CenEQsJO3iaqNw8VC74Qpbg6uKam2q6AKVNk6bx1/5Wpn7MxZn9pSE9A63hIWTq/E0VP4EajgBKGD3G4E+BRDdj1xq5jvHMB8gFf/s+v9yl/M78WFTmXmPH8BxRHRTFAKbXKwPXPlLxlYoqQoKwVVMVUsrHjICh2Uxh1MVVNtVLKGMrGHUxh1aKimKinKGMqGHUxh1aHqYqBLMPEUigpDDq8VApCoEsw8QMME2ZyifAK0YUdFcKikKiWceIpGG7KQw/ZXCqpCqpzjxFG47Jbjsid8OqY4ho5pZmPED7k9E+6PRWHHs6/VRO0G9/RGVhiI7vslu1nVttuDi0ZbdBJHiLpjtKqb8IHV0N+qu8haUaW7S3QQjMY8iS6mAe4MnsrGvcdb/4o+gWbqNFqmWQP1f5BRcAnkDUR4n81RV2lh4GatSAOk1GQbwYve6SqN8Dx25BMdjabbFwlcptDEBxsJ9F2nu2HeJGR3cFp+YQWOOCpkbyrSYeQLmg+Ma+a6KXURi+G2ROi2uTh3YQOvk9AfqqXYNo+yfmvRcE7CvB3VSm/rle13qAVedm0tTTb4kLb/IqLs0yF0ja2Z5xTwhNoMdyj8BsshwdcRzESPVdZUxmDpm9XDsPQ1KbT6ShMR7UYFmtekf4A6p/kaUn1s5bRixrpox5aLKeIawcTnejf9IRFHH03aO9QVmU/bXAf8SP+TW/BiLpe1+CIkYhgHcPaf5XNBXLLX7j+/4Nko+8jTLSdAptYVi1PbXAj+/nwp1j8wyFT/v3gv8AiO/9up+SjTVf6X6Mf+v3l6goxQUhilxjtt/dE3jz8FAe0BJgZfVdmBsxyxR24xasGLXAv2xVdo6P4R5amUO7aL7zVdbXjMfVV23m0J114JnpLcV3VjcV3XmbdtVOVZ3TUn6qNfab3zmqPcNCJMfy6JdqveQZ14RZ6dU2gxt3Pa3+JwH1VdPbtA/37PNwH11XmBcBHKQCLG8pjX6SY6A2nTkn2tP3ic8vdPWqe0KZ0e0+DgforTiQBJMDqTb1XkEkjVnSC9gPpKlWY1o4n0+2V4fH8sx+phZvpqd/b+Roq0vd+Z6BtP2zo05FMGq790wwf4+fkD4rFp+3eIzS6nSLegD2n+bMfouUNZvUaTzH1EqLa4OnLx/JdEKNCK33MJVajZ3lH2/H26BH8Lw75FohDY728qkRRphn7zznPkIAHnK4wV+xF+/nySOIb3HjYfn8k1R6dO9vqGWq1a/0N2t7V4t2tX0ZTHzyozB+22JbAfkqAdQGuPm2w9FytSuB90+DgfRV++jp+o6q3Gg1wvQnVUT5PQWe3gPxUnt/gc15/wCoBXv9uaEfDWP+Fn/evOPe29D+vNJlee3oeXSe30WDo0PI0VWqei0/bugP7mp/0T6ZlGr/AOoLfsUHH+JwHyAK4EuI+IQYNjLSTzjMIt0nl5KLcW25I0E8+vOAe58Alh6fmz+Y8tXzOyxHt/XPwUqbfHM78RCzK/tRXqGX5Hf4GiPAgT6yudbtGmRcwZ76diGnw0VZ2kwkAQBGpzG5mJ06gTEWlaRdGHsxIbqS5Z1Lfamu2zQwD+Bp/BBY7bVet/aVC4dNGjwYOH5LBftMSbadJAJmLGTaL3VNTaJPwgiepsPAnXzVKrSTuluJxm1a5qOquNyZ8QD+CY1XdfkFnHfBuZzSW6yZHS08jca9FCtiS17s7IN+EkyJvJPPz+SO7XgLEaDjOpUW05gATOkc/BC4fF5iA5vDluaYAd2J63gGevgnxFCpTEuaS0izwHBjuHMcpcBPMeRS7pXswxeIVUoRGYR0lSex2WCDl6Gcvbss9mLER+H5eXoEQ40w8AuDuRA4QT0a4iI0kmIIPQE1nQaC4UD90x4Ht+Y9U5ouGoI8QRpr9EO540c/wvmby1yydOQE+iuw9DM4NYQ4kaAibgmRI0iPDTXQdcFTHcyNQRy059FKlTzaR6ga+KZ7c0uLnATckl2tgXE+mnPwVbWtjLL3GdG3FpnQ3tF4/qZmGMsIHMj1Hb80gW/fA/m/JJz8oPDMiJiMpLQS2SDBE6duUqTMc5oAbkAgH+ypPvoblpPJJ1Zvj7+o9EfEhRFOMxe8k6gAC3XNmvf6KD3MHwySB90QZ1kh0jr5rtTWfxcNEZgAQKVMSAZGjb3vft0CubUdf9nhuQjcUzyMWLfquS8vh6/0abeX36nn5e68EtBtAmORAPpr2CnTwzrzc5SRB+7MyDfQHwAldzTaYIDKA0H9jTmw65Ua1pJAigP+RS5RrLUnUa8vX+h6b+Z52xvDII+LQ3cYixiJHpzVlWmR+zZVa9rrxAbB4rS67SRyBuTGoXozhmylwonib/cUuw0j5KbqFPLENiG2FKgI15lhOnVZOu/L79C9B5kKAaJzAOabZdbGczT+FlHIfiykka8+UTEWheoU8FQMyzpqyhaw0imOc/qVpHB4c0spp0zEQDTZaW3+GPu/PspfVNfpDEeO5nkGc0DmQTAmbH7NzNuvdO7CuAmJB0ggm2ttfovWhs7C7kRSp54YJLDzLs2jx0CvdsnDlwbko5YYRFOqD8UWO+7n9BJ9X8AxHklDClwIa0nK3MSBMAFslxAsL69wqXgn7QA5amfD9BfReyG5MOwUqlNrQ34TTqExGmbeeWnS1lzrNmhznGoGVCW5cxfiAYkmDIdab9rKF1j935lOkvM8Rbhy48+UmOuvNSp4TO4hubroSQOZIHIdYXt2G2WW0HU6eFpZHtipGIrEkAkS1rqQAcJcdeixq3sy1meMBiyTIzivg3agglocQSOKb8+SuPWXdmvmiXSSPKXYPXjFutvqmpUB9oiO0yvQcZ7N0wb0sdBbOWnTp1qmaRDiBDSI1gkyUJW2Ng2gT7y0gaVcLUpzDTqRY3jTpz1WncWXDFiV+Ti3sAjT6yZN/D0Wts/YuIrEupUwB98uDGgusAM0a/jqtXEU8LRZUfQqMq1Gte00qlMzkcCHOAdILgHGbdxpID2DjCG1AHZGNbvCBmDy3M2Gs1tmc0+HmonXk4XivUpQSlZsGxfs4/M1hqQ57Q4M5D4c2aCcrZc2D25WWJtbYtXDvcyowgjrIkSYLZuQYsel16D7OYKm51WvVM5WF7f2jmHdC7zI1yyJAtf0xfazEtFfEihTcQagpvdUJJJp2ls3c0jmTcEa2WNOtNzsaVKaSucO5qYdEW7B1HHQeoHzUG4J2th56cl2akc+lg+U9ERgsOHuAmLgephX0cA8mSLR+BKlVwkDM20XJ8+SHJD0s6F226FHDswzaTahBLnOBy/ESSxzgLi8SOQFtZy9tbhzWvpOdfhMlxggWkkWcRfKCYugdm0jnEtLm6vDQSSwkAwBqdD5LT2rs/NULcEyq+m5uYtNJzQ05Q0wahJdqb2+KwXMoxhP99/h/RX4n4HOA3sVt7Q2xSrUWtNJzXsADcrgWCBGpGY6DUzAAm0kDEUGCg39nVbVzHMXRunMjhy2kPmeoIQjWnkDz0nlc+mq3cVLfyI3RdQpOJlkEjijUiNTHRF7Rplj2Oc6ajm5nsLWtyEWAtwuDmgEED7XM3IFFrp4bEd4K0cRRxFV5fWZVefhnK4ZT9kRlgNEjhEW0hD5GkQw2CdUksbIEkmQA0AxxHlq0T1PdU0GgmQ4tbYGCM1xexIkTPMLRZhajDmBrDO11J5c34rWaHOn7I05ZbE8lhtik3GcGRc5QNY0+eqnXbxKVNvhAbKcMIJeHmMjYsZPF3iBY81bWwVWm9wqNdTc0kFr5BB5NHfQyeSNdstzHNzvLZdTIcakCbwc8wA0E35couh/eKgcQagcM08Re82kAjNY669EKbfssJU3HkqxLqlO76YAddsgCw7NsOSvo12ZQbgn91h/zXRGL2ga1IMqOENPDbK8gzw2tl6W59zOMMOzm6D0v+AWkJzt+IlxPSgArGhVhWAq3Em5JgVgKraphJxC5aHfgpsNvRVAqxhUuBWok0q8Pt+u6HaU9F7iLgA9Jn5pOAtQQx3D+u6uD7g9h/mCHYVMFQ6ZSmbeysbFGAZsdL/RA+8HN6/X+qB2NtNlZjiwyGvcw6i4g8wORHbxU811jGgrtmkqmyRrYbFnIR+7HqT+aI/2gb+H5fksek+xUt4jtle5OXYLfX/aNI5Nj/qaf9IXJe3PtJi6JpNoNOXIJfuw+9xlBMgWE6LfqVYuTFtTYILF4+jwZqjOLhbcHMQYIbGpBIFtJW0aMVyjNzb4PN6+28ZUbDmFzWy8/sQAPhnNDRw8I1tr1QuI2vUc47ymyXANdLXNdlBDh9q32fGBqvRqe08NUApsObfv92aQ0gF5yWJIFuNl+65WpWw9VzXFrC2vw/tDDqe5ptDCct2ZjlEzpm8nJRT2Q1qfImbcFbLvXXFM04DRZj8rHAkyPhDfTvfRxOww1rH06RcSDL6gcXfs2Go1okw05WjQRlE30V+wzSp0BWw+Da54JmoZyAbsuLWufmebdBFtUPj9p4zDUofucld1V2Uio+zargSCHC2awBGgHni4q/4UbqW25aNm1cRhWwwUqbmtqfFHE0Cm4wdH3NoNpIRrdlE4hlY1WNcOBgIa+myCWCA2cuUyRLYytbAmQsHbOIqUsOx7azBmpU6uRjHteBUa185zUPMx5FbNbC0W7bZhXZ30Q0gipVqvDiMO94cczo+IDsloRWSRm4j2f3bi5+JbxE2AdmLXAAiTAJu4Ejqg8XgaVCiGurS4ucH5cpcxsBzOIugm44QJsQFk4LEMa9xyNkCoQYEzAy37EfNaO3sU00KYhm8lznOpk5SHNYWiLAEB17ayq07onU7F+FwmD3cOfiXEZo3dOmQ2S0kuIbnPLURYgaXAf7uRlaXknLE03EElp0hpNyQRbT1XVeyftLUw1GnnqQx+ZjA1pkbtrCQZdlj9o3lqSpbT9oa76xpmtQMNcQ7cGm6A3MGSKlyfhHjyQ/at9/QSntwZ/wDsOg7dFgrioXFpzZWnNTp56gblBIMSBmt10vmiuKlZ9M1aradnGnWk1S1rQajXElozEZiJiwC2NmbWBezEOr5AHHK1oBEMyuALSYi/T7JSd7YMc15NNjy5w4n0ix7ogAGpSLuENiMzZmJKeNp77idbbYo23SZVbUNLPu6Rpv3RqUhwtcym4Diu6XAy2RxR1VVbZ8OD2Mc5jgXU2l8OOozOGQgiR07HS/RbL2phsRTqb7d7xxuHsbWYzKDkDgGzY8zp3UqGy6Zdmaae6a2LGpRDIkvLQ0u1LidIMLKcnHa3/TSm4tptnFNw1R9bdburnlwJa2GAtzB2U5Rw2cJRGO2K5ji2ozPkYHuI4sodGWSDb4g3xC67EbPqOLq9Oq/OS+S5zHAFzHNYbOabZyQCz7Isucxuxq7XO3jt/LHEFj3U353AWLDqATFm3jxCmFTU+UaTilHZNswMLhrOG7MCL5QBBuHGxiQBodOZCHxDD3Annztb6rd2Xt0YfPTrUHu5EPdUsWjhBaHBtrgS0kSLiFRW27nY9r2B+fLIfmJLmgtad5IdIBJ1gnUECF1pyXBxtIzfdGk8BcQeomDlkg6aGeXKyr9ydJ4h6H81o4LbDW1AalJpblykAZTpGZuUw06ag80Zsrb+CYzLXose8OPE51cEi0Wp8I8E3NrlCSTN8FWAoUVCpCqV26Dn1BYKkChRVKkKqNAtQWCpNchRVUhVS0D1hQqKQqIUVFIVUaBagoVFn7S9oKNEOmo0vAPA0gumJAIHw+cKWIAewtOYAiLHKfIjRcnjPZISXMe4akAkO+al034IakvEf2f9pvd2vG7zB9Qv+LKRI8D2RtX21cWOLW0mOBaA1xc4kEOkiMukCf4guc2ZsZ1VzgXQGkNMjW66nDeztJrSMpIJBILzBImLQOpUKnN8FucVyV/70VDWwgDnltTdGowUwwuLqpY9tNz4kHLZ2YCTrYxnO2riarK8b08bMvG4Fl3y1rW2IiJuPhGq6vD4BoLC2myWgBpgnKASRBnqSjqdFwnia3wYPxSwO+7DMvBHG0tk4mpVY8MAPu5ZmIJu7DPpwZM5iTBdyJkaQtHD+yld1PDh1Yjdve4tEQwF1MjduADgTBkzqBELpmUDMmrVPaWtb5hoEosVUYQys5vZfsTTZu948vyVN4QfhcODhc02I4L9ZVrPZulT3bWA/sy8h0nNxtAMnyC6DeobE1nAOLW5iASGyBmIFhJ0nRGIWQy5LQKbOFo5AADSEB7T0d6GAzDWEDzcSfmSgMftbG5+DCButid5NxclrhH9VQ7a+MI48JJ7W+RJUwoRUr2KlVbViraWBLqYOUuy0qVKOzQQL+ShW2uXYwYk0akiBEGbMyG8ILazq1fKThqrcotAcQR4Rr38lnsfUZBNJ1jIzMdaP0FUoK4RkzXwGGwzpzMxD3EkQ2WBp5X3VQvm4iGnh5zaGKp4cuaA97Gx8TxngwIs0NMaIXZ+2KtAy1vOeJjrETcEGQbkTPVQ2nt41nZntaD1a3LM3uJgnvF5XO1LV8DoWjRzuEnaTd3Tp5bU31HAyL5xTBsdP7MequD99UljXyQ6zcugbLtT90GVi08WDyYL6wAfLmpt2iQC0PMEQdYM2TcfIiLXibNLZ5q0gxtWm1rXOP7So1jjYfZJ0uYPismozPLRAHmUZs/Zbq7QQ5jWkkA1HgDhjNwiXQJF48JNkcNl1GVzh4FWqNWUXbw6TAIEExGkpN6d2OyfCGr42riH1C/ITUOcwz4XZw8ml910y3XQkc0bSrUS5objjThgDpbUq5qkuzAB85Y4W2gWMKvZuELA4mnlzOsJBgCdb+PohziXtd+yIl3A7IzLlLZFyWnUTcfUKNTlw/v0Y9KXKNCr7UVaVIOD95EgOeKxn7pEuygco7oOp7aYirRLajMOKc7txyVA9udriHCHakB0EaZdNJu21gnU6DczQ8ObctkilUgndvzMHHM6GRlPIrjqznOcXPMuJv3Nr/RC0vwQndcB7dpDJkznIDmDZcGA6SGzANz6obEYtugk+Z8kGWevyUW0iTlAkrVSsQX0sWbydSDa0dVH3x/I/irqeABPE/K23FBdE65gL27IRzYtr4XCSkM9GbVP3T8lMVf3D8lWHpw9erY4rloefun5KWY9D8lUKilvEWFqLQT0+imCeg9f6KgVVIVEaQ1BAnt+vJSA8EOKqkKiekVwlo/V/wA1OB+pQgqKYqI0hchs/BtY556mfmVpNcEEKikKimMLIqc7u4fvVIVUAKikKiegi4cKimKiAFVS3yNAXDt4mL0Hvk+9RoDUWsAcJIvJHoSPwlSNMdFTvVIVU9Irkt2OiiaQ6J94lvEaQuQZSHSyGxmzKTyQWNIMWjoZCMzpi5Gkeox/928MZ4AJM2m3ggNtbHw1Ki5+7cdAMtzcxOvJdIXDqFh+11dzMK8tOpaLRYFw/wDHms5wSi3YuEm2lcN9lfamvSphjQynTyhrBmbSOkgkOdxGIsAJ7LY/3+qUmvzFwJblbADhJD+IvDnGASLQV4xUxF5vy8UVhdpvpg5Xa+c6emi8J9LHU2enm2sdPjtouytyPaTN8kyAZuc4BB4unVF4ZtKo0NqCraSOMFsOJI4C2/jm691xXvJsM3Mc7arSwW0n07BxyzJA62vEidB0mFuqW1kRr33OkxwAoimSQwy4znygkDIHNBLc0TeLQVg0tjbx2Wm0AF+Vjry/M5rabS6QyJOojUzyjaobUp1G8eZriQDu82V5JAaSDInQcQ6xZNWp7sncsbDuQzhzf2bmxZ2Yyb3Mdo1ytKLLspbo5/aezTh6z6NWm6m5rv7N1y25gE6OtHENUBuWiI1Gh1n+v5rq62PYc++pGocpY17nukOkHOBHFaSAfvLBxlLIGRrmDpkWgaR5qoyuQ42KQLHNF/CCp09nNeJaPGNJ/mHZNUaCCGmJHPlBkCfl5JmkC1/19eaLgdNnT50KHp869484KD1LOhM6cVExWCw9OHoUVE+9TEF50+dCCopbxMAsVFIVEGKicVECDRVTiqgt4pConYQaKqkKqB3icVE7CDhVUhVQO8T7xOwB29UhVQAqKO8OYXtBt3kRf1SsM0hWTiqgBVUhVTsIOFVOKqBFVPvUWEHb1IVggxVT7xFh3Dd4hNp0hUpljrgx8iCmFRJ1QASVLSsNcnNYv2agtGUcZsd5TY5t4jdvjMPAk9lnVdhnI5zA14a48THteHDsAde0eq62hsSgKzKtSq+C+SHEuzFkOYc2o1gj93stvFnDgVslNoLmjM5oFzH3heQF81UqShOy3PXUU0eXUywWLMvcyfqo1YFwfVaFSg+bNzzrNr6ER4ylsx7qbuNjBeNLi9pPMd/6LrbsrmSV3YJ2Zs97S2rp2GsERM9pmL6cksLtp2Zzi1rmZzlmzmAEXBb2A8OR1nZ2liM+Gc1obMWAc0NFiHHW9iQsg4FlKk4VAXEtzSJAB+EQJuA4zI6d7c2vVvI3cHHaJZjW5nEyXOs6WwWgm8TFwJ880WiFlhsPLmyTlII0mWj0538FWzFEaPjUGOmsQDfSfIHkEqLuK5t10HMxEc4iErWJcriqEQJGji06BxB4hN/3vl2So0bWe4+DQdLcz2Ujcy6bj5ACB4/17oethgCIg2E6TPMGyok2s6fOh86fOvdueeEZ0s6Hzp8ydwCM6fOh86WdFxBOdOHobOnzp3CwTnT7xDZ0s6dxWChUUhUQmdPnTuKwXvE+9QmdPvE7hYLFRS3iDD04encVgzeJbxCZ0+8TuKwZvE+8QYenzp3CwYKifeIMVFLeIuFgsVFLeIMVFRicZl089P8AyoqVVTjdjjBydkHDHNzRPKfG0qNfHjKMrjLgSI5W59P10WC5xc8k2nvbXKPm4eCrp1hzvBJueXYfr008ufWzaa2OyPTxTTNPEY0OE2nkdCBOgjre+undM/aDjIa53KxvIBN+xiPTnZZO9uCdDMjl+uatDZ0MjmAbxyI/p0lcDbe7OlDvxDg8EGHRF/hBkjpfTXsnfXzNLnZcwP8AMZ5eV/JUOZIboeI9Ytz7TGlrlPjaIjM3h04ddQCcvPUn1WsZWjZmbW9w7AbaaQadRxGtxJBMGJ55ZgyhcVtNrhldmsRedYn4iInVt+x8UPhC2BpxNIJ5TEXPXX9FPUpt4oAAcC3UwZDSLmxj1vzUbXL1OxSxgDjBBaIuDcg63iDrHkiwIJJHCcwIj4eWnLX5WQk2MNjqBMzYWm6cVO4Nr6zb9f8AlD3EiVVzQRB5EXEmO/KdFQahN7Hvr+CtewSTyM9bnp3/AKrPAI5x5JoTN3MnzKnMlmXsXOIuzJ86pzJZk7gXZ0+dUZk+ZO4WL86WdUZk4cgLF+dIPVGZPmTFYvzp86Hzp8yLhYID0+dD50+ZO4BGdPnQwcnzJ3FYIzJ8yHzp86dwsEZ0+dD50+dFwsEB6kHoL3tn3grW1JFikqkXww0sJzqnEvaWkWk6HQzEtI6mQELiK0C/p+Spqcsov8UmLm4NtZzEX8NFxdR1XMEjenR8bjzcZhHMNEQ6Jm+k3JQuJBDjBNtLc/LqdEY906XJbz6lpkzytl9FRUrAENcJDQASA63QkaixBseS81M6mUveSfhc2ANTm6CSepkeqvbUAEAyew0P6g+qCxTzMTyEeHVPhMwuNLg+kmVVthXCt4bwfLzALfGCkTmyzJAHwjnp+CRy9Dz6RztI1GikwGdMomJ18wOen6kKRg1J+QuYWgmbEzoDGh11+RT1yWkAOB58N5jXUa+fNSGBJc0EnMXAX6dR2H0lFYPCwHSILT8QA7i9xpx6dk20txJMCEkG0A9eXK3ZQAObSbW6aIvEYIBthcGIuYF4OXmSIUaE9w209tBMjUcvNF/ILA1R4AEE2tzt0gqBYevzn6BXNifGdCOEczHNRAd9giO4k/PtCYgpJOkvWOQSSSSBDhJJJMBJwkkmAk6SSaEJOkkmAk4SSQA4TpJJiEnSSQAw1KjiPgd4FJJZP2X/ACWuV/Bm4TXzWngfh8ykkuLpfzUbVfZK8dy8Xf6VKv8A2Y8R/nKSSwrfmP8AdmsOCPP9dU9TWp5f60ySyKIfZP8AG36IVnw1P4h9SnSViJUv9P5o3C/EfL/I9JJTIaIDVvif8y1Xf2Hn/wDm9JJZz5RcDNw+v8n1UMb/AGT/AD/+2mkkqXJIAfgPi38FNqdJaEI//9k=" alt="Menhirs de Carnac">
+                        <div class="media-grid-caption">Alpes-Maritimes</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="data:image/jpeg;base64,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" alt="Quimper">
+                        <div class="media-grid-caption">Bouches-du-Rhône</div>
+                    </div>
+                </div>
+                
+                <div id="language" class="region-section">
+                    <h3>Langue et Traditions</h3>
+                    <p>La langue traditionnelle est le provençal, dialecte de l'occitan, dont le poète Frédéric Mistral (Prix Nobel de littérature 1904) fut le grand défenseur. Aujourd'hui, bien que moins parlé que le breton, il continue d'être enseigné et préservé.</p>
+                    
+                    <p>Les traditions provençales incluent :</p>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">⛪</div>
+                            <h4>Santons</h4>
+                            <p>Figurines d'argile représentant les villageois provençaux, utilisées dans les crèches de Noël.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🎭</div>
+                            <h4>Farandole</h4>
+                            <p>Danse traditionnelle provençale où les danseurs se tiennent par la main ou par les épaules.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🐂</div>
+                            <h4>Course camarguaise</h4>
+                            <p>Tradition taurine non violente où les raseteurs tentent d'attraper des attributs fixés aux cornes du taureau.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 5: Panorama image -->
+                <div class="panorama-container">
+                    <img src="https://us.images.westend61.de/0000450228pw/france-provence-alpes-cote-dazur-bouches-du-rhone-marseille-port-vieux-view-to-harbour-and-old-town-panorama-WDF002692.jpg" alt="" class="panorama-image">
+                </div>
+                
+                <!-- <div id="economy" class="region-section">
+                    <h3>Économie et Industries</h3>
+                    <p>L'économie de PACA repose sur plusieurs secteurs :</p>
+                    <ul>
+                        <li><strong>Tourisme :</strong> Première industrie régionale avec 31 millions de visiteurs par an, principalement sur la Côte d'Azur, en Provence et dans les Alpes (stations de ski)</li>
+                        <li><strong>Agriculture :</strong> Production d'huile d'olive, de vin (Côtes de Provence, Bandol), de fruits et légumes, de lavande et d'herbes aromatiques</li>
+                        <li><strong>Activités maritimes :</strong> Le Grand Port Maritime de Marseille est le premier port français</li>
+                        <li><strong>Technologie :</strong> Pôle technologique de Sophia Antipolis près de Nice, spécialisé dans les nouvelles technologies</li>
+                        <li><strong>Aéronautique et spatial :</strong> Présence d'Airbus Helicopters à Marignane et activités liées au Centre Spatial de Cannes</li>
+                        <li><strong>Parfumerie :</strong> Industrie historique à Grasse, capitale mondiale du parfum</li>
+                    </ul>
+                </div> -->
+                
+                <div id="cuisine" class="region-section">
+                    <h3>Cuisine et Festivals</h3>
+                    <p>La cuisine provençale, pilier de la diète méditerranéenne, est réputée pour :</p>
+                    <ul>
+                        <li><strong>Plats emblématiques :</strong> Bouillabaisse (soupe de poissons marseillaise), ratatouille, aïoli, soupe au pistou, daube provençale</li>
+                        <li><strong>Ingrédients de base :</strong> Huile d'olive, tomates, ail, herbes de Provence (thym, romarin, sarriette, origan, basilic)</li>
+                        <li><strong>Spécialités :</strong> Tapenade, fougasse, calissons d'Aix (confiserie), navettes de Marseille</li>
+                        <li><strong>Vins :</strong> Rosés de Provence, rouges de Bandol, vins des Côtes du Rhône</li>
+                    </ul>
+                    
+                    <p><strong>Festivals majeurs :</strong></p>
+                    <ul>
+                        <li><strong>Festival d'Avignon :</strong> L'un des plus importants festivals de théâtre au monde (juillet)</li>
+                        <li><strong>Festival de Cannes :</strong> Festival international du film (mai)</li>
+                        <li><strong>Carnaval de Nice :</strong> L'un des plus grands carnavals du monde (février)</li>
+                        <li><strong>Fête de la Lavande :</strong> Célébrations dans plusieurs villages provençaux (juillet-août)</li>
+                        <li><strong>Feria d'Arles :</strong> Fête taurine (septembre)</li>
+                    </ul>
+                </div>
+                
+                <!-- <div id="modern" class="region-section">
+                    <h3>Influence Moderne et Comparaison</h3>
+                    <p>La Provence a exercé une influence considérable sur l'art et la culture :</p>
+                    <ul>
+                        <li>De nombreux peintres célèbres (Cézanne, Van Gogh, Matisse, Picasso) ont été inspirés par la lumière et les paysages provençaux</li>
+                        <li>L'art de vivre provençal (marchés, terrasses de café, pétanque) a influencé le mode de vie français</li>
+                        <li>L'architecture provençale (mas, bastides) et la décoration (tissus imprimés, faïence) sont prisées dans le monde entier</li>
+                    </ul>
+                    
+                    <p><strong>Comparaison avec d'autres régions :</strong></p>
+                    <p>Contrairement à la Bretagne celtique et pluvieuse ou à l'Alsace germanique, la Provence présente un caractère méditerranéen qui la rapproche davantage de l'Italie ou de l'Espagne que du reste de la France. Son climat, sa cuisine, son architecture et même son rythme de vie témoignent de cette identité méditerranéenne.</p>
+                    
+                    <p>Aujourd'hui, la région connaît des défis liés au tourisme de masse et aux changements climatiques, mais reste l'une des régions les plus emblématiques et attractives de France.</p>
+                </div> -->
+            </div>
+        </section>
+        
+        <!-- ALSACE -->
+        <section id="alsace" class="region">
+            <div class="region-header">
+                <div ><img class="region-image" src="https://a.travel-assets.com/findyours-php/viewfinder/images/res70/344000/344289-Strasbourg.jpg" alt="Image de l'Alsace (Grand Est)"></div>
+                <div class="region-title">
+                    <h2>Alsace (Grand Est)</h2>
+                    <p>Le carrefour franco-germanique aux traditions uniques</p>
+                </div>
+            </div>
+            
+            <div class="region-sections">
+                <div id="geography" class="region-section">
+                    <h3>Géographie et Histoire</h3>
+                    <p>L'Alsace se situe à l'extrême est de la France, le long de la frontière allemande, délimitée par le Rhin à l'est et les Vosges à l'ouest. Depuis 2016, elle fait partie de la région Grand Est, mais conserve une identité culturelle distincte.</p>
+                    
+                    <p>Son histoire mouvementée est marquée par de multiples changements de nationalité entre la France et l'Allemagne :</p>
+                    <ul>
+                        <li>Française depuis le XVIIe siècle (1648)</li>
+                        <li>Allemande après la guerre de 1870</li>
+                        <li>Redevenue française après la Première Guerre mondiale (1918)</li>
+                        <li>Annexée par l'Allemagne nazie (1940-1944)</li>
+                        <li>Définitivement française depuis 1945</li>
+                    </ul>
+                    
+                    <p>Ce balancement entre deux cultures a créé une identité régionale unique, visible dans l'architecture à colombages, les traditions, la gastronomie et le dialecte local.</p>
+                </div>
+
+                <h4>Galerie Photo : Alsace (Grand Est) en Images</h4>
+                <div class="media-grid">
+                    <div class="media-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTk696lI7LePuiPVLLwSs-k12EU91gQe82chw&s" alt="Saint-Malo">
+                        <div class="media-grid-caption">Strasbourg</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://media.istockphoto.com/id/901854006/photo/colmar-france.jpg?s=612x612&w=0&k=20&c=vPTS6e5gAe7hxvPBKNIyX7NhlBXhrm-W-HpLB40_frg=" alt="Port de Brest">
+                        <div class="media-grid-caption">Colmar</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCLJ8aERACS48mByD4EK1b9P9UNTJvCoxj4A&s" alt="Menhirs de Carnac">
+                        <div class="media-grid-caption">Alsace Wine Route</div>
+                    </div>
+                    <div class="media-grid-item">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2U2JUoBuMpxkHFC-0Vh2mDHL098cJiIuXXQ&s" alt="Quimper">
+                        <div class="media-grid-caption">Eguisheim and Riquewihr</div>
+                    </div>
+                </div>
+                
+                <div id="language" class="region-section">
+                    <h3>Langue et Traditions</h3>
+                    <p>L'alsacien, dialecte alémanique de la famille des langues germaniques, est encore parlé par environ 500 000 personnes, principalement parmi les générations plus âgées. Contrairement au breton ou à l'occitan, l'alsacien n'a pas de forme écrite standardisée, mais reste un symbole fort de l'identité régionale.</p>
+                    
+                    <p>Les traditions alsaciennes incluent :</p>
+                    <div class="features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🎄</div>
+                            <h4>Marchés de Noël</h4>
+                            <p>Strasbourg abrite "la Capitale de Noël", l'un des plus anciens et plus grands marchés de Noël d'Europe.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💃</div>
+                            <h4>Costumes traditionnels</h4>
+                            <p>Le costume féminin avec le grand nœud noir (Schlupfkàpp) reste emblématique des fêtes régionales.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌷</div>
+                            <h4>Décoration florale</h4>
+                            <p>Villages fleuris et maisons décorées de géraniums, tradition qui a valu à l'Alsace sa réputation de région fleurie.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Example 5: Panorama image -->
+                <div class="panorama-container">
+                    <img src="https://www.shutterstock.com/image-photo/old-town-water-canal-panorama-260nw-1700726887.jpg" alt="" class="panorama-image">
+                </div>
+                
+                <!-- <div id="economy" class="region-section">
+                    <h3>Économie et Industries</h3>
+                    <p>L'économie alsacienne est l'une des plus dynamiques de France :</p>
+                    <ul>
+                        <li><strong>Industrie :</strong> Secteur automobile (usine Stellantis de Mulhouse), chimie (BASF), pharmaceutique (Lilly, Novartis) et mécanique</li>
+                        <li><strong>Viticulture :</strong> La Route des Vins d'Alsace s'étend sur 170 km et produit principalement des vins blancs réputés (Riesling, Gewurztraminer, Pinot Gris)</li>
+                        <li><strong>Tourisme :</strong> Strasbourg (capitale européenne), villages pittoresques de la Route des Vins, massif des Vosges</li>
+                        <li><strong>Institutions européennes :</strong> Siège du Parlement européen et du Conseil de l'Europe à Strasbourg</li>
+                        <li><strong>Innovation :</strong> Pôles de compétitivité comme Alsace BioValley (sciences de la vie)</li>
+                    </ul>
+                    
+                    <p>La situation transfrontalière de l'Alsace favorise les échanges économiques avec l'Allemagne et la Suisse, avec de nombreux travailleurs frontaliers.</p>
+                </div> -->
+                
+                <div id="cuisine" class="region-section">
+                    <h3>Cuisine et Festivals</h3>
+                    <p>La gastronomie alsacienne reflète l'influence germanique tout en conservant une originalité propre :</p>
+                    <ul>
+                        <li><strong>Plats emblématiques :</strong> Choucroute garnie, baeckeoffe (ragoût de viandes marinées), flammekueche (tarte flambée), coq au Riesling</li>
+                        <li><strong>Spécialités :</strong> Bretzels, kougelhopf (gâteau brioche), pain d'épices, münster (fromage à pâte molle)</li>
+                        <li><strong>Tradition viticole :</strong> Vins d'Alsace, eau-de-vie de fruits (kirsch, mirabelle, quetsche)</li>
+                    </ul>
+                    
+                    <p><strong>Festivals majeurs :</strong></p>
+                    <ul>
+                        <li><strong>Marchés de Noël :</strong> De fin novembre à fin décembre dans la plupart des villes et villages</li>
+                        <li><strong>Foire aux Vins de Colmar :</strong> Festival musical et viticole (août)</li>
+                        <li><strong>Pfifferdaj de Ribeauvillé :</strong> Plus ancienne fête populaire d'Alsace (septembre)</li>
+                        <li><strong>Corso Fleuri de Sélestat :</strong> Défilé de chars fleuris (août)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Website made by <a href="https://www.linkedin.com/in/kanakesh-kapaganti-81b983317">Kanakesh</a> | SRMIST CSE-AI/ML | <a href="https://github.com/phantom6126">Visit my Github</a></p>
+    </footer>
+
+</body>
+</html>
